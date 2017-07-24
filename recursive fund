@@ -1,0 +1,19 @@
+<?php
+    function get_element($a)
+    {
+        if(is_array($a))
+        {
+            foreach($a as $value)
+            {
+                get_element($value);
+            }
+        }
+        else
+        {
+            echo $a."<br/>";
+        }
+    }
+    
+    $a = array('a', 'b', 'c', 'd' => array('da', 'db', 'dc', 'dd' =>array('another array element')));
+    get_element($a);
+?>
