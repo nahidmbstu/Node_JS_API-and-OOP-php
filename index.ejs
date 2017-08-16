@@ -1,0 +1,88 @@
+<html>
+<script src="./main.js"></script>
+
+<body>
+
+
+<h1>hi this is nahid</h1>
+
+
+ 
+
+
+
+  <form action="/quotes" method="POST">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="quote" name="quote">
+    <button type="submit">Submit</button>
+
+  </form>
+
+
+<div class="well">
+  
+    <ul class="quotes">
+  
+    <% for(var i=0; i<quotes.length; i++) {%>
+
+    <li class="quote">
+      <span><%= quotes[i].name %></span>
+      <span><%= quotes[i].quote %></span>
+    </li>
+
+   
+      <%= quotes[1]._id %>
+    
+
+  <% } %>
+
+  </ul>
+
+   
+
+   <form action="/update" method="POST">
+    
+    <input type="text" name="update" value="<%= quotes[1]._id %>" />
+    <button type="submit">Submit</button>
+
+
+   </form>
+
+   <button id="delete"> Delete  </button>
+
+   <script type="text/javascript">
+     
+     var del = document.getElementById('delete')
+
+   del.addEventListener('click', function () {
+  fetch('/delete', {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      'name': ' Vader'
+    })
+  })
+  .then(res => {
+    if (res.ok) return res.json()
+  }).
+  then(data => {
+    console.log(data)
+    window.location.reload()
+  })
+})
+   </script>
+  
+
+ 
+
+</div>
+
+
+
+
+</body>
+
+
+</html>
