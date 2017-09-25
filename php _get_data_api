@@ -1,0 +1,86 @@
+<?php
+
+$data = file_get_contents("https://api.flickr.com/services/feeds/photos_public.gne");
+
+$xml= simplexml_load_string($data);
+
+$json = json_encode($xml);
+
+$data = json_decode($json ,true);
+
+
+$t=  $data['entry'];
+
+
+foreach ($t as  $v) {
+	   
+	   $a = $v['title'];
+
+	   $b =  $v['author']['name'];
+
+	   $c = $v['link']['1']['@attributes']['href'];
+
+
+
+	 
+?>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>Name</th>
+      <th>img</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+     
+      <td><?php echo($a);?></td>
+      <td><?php echo($b); ?></td>
+      <td><img src="<?php echo $c;?>" id="imgdata" width = "200" height= "150"></td>
+     
+    </tr>
+    
+    
+  </tbody>
+</table>
+
+
+
+
+<script type="text/javascript">
+
+	
+
+
+	
+</script>
+
+
+
+
+
+<?php
+
+
+}
+
+
+// $nasa = file_get_contents("https://api.nasa.gov/planetary/apod?api_key=qAHxyQi0Uilpjs7wWfKgXESirQ0JlWhxbBzq7DTP");
+
+// $json = json_encode($nasa);
+
+// $data = json_decode($json ,true);
+
+
+// echo "<pre>";
+// var_dump($data);
+// echo "<pre>";
+
+?>
