@@ -8,11 +8,10 @@ $json = json_encode($xml);
 
 $data = json_decode($json ,true);
 
-
 $t=  $data['entry'];
 
 
-foreach ($t as  $v) {
+foreach ($t as  $t => $v) {
 	   
 	   $a = $v['title'];
 
@@ -20,14 +19,21 @@ foreach ($t as  $v) {
 
 	   $c = $v['link']['1']['@attributes']['href'];
 
+    
+// Read image path, convert to base64 encoding
+$imageData = base64_encode(file_get_contents($c));
+
+// Format the image SRC:  data:{mime};base64,{data};
+$src = 'data: '.mime_content_type($c).';base64,'.$imageData;
+
+// Echo out a sample image
 
 
-	 
+
+    
 ?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
-
 
 <table class="table table-bordered">
   <thead>
@@ -43,7 +49,7 @@ foreach ($t as  $v) {
      
       <td><?php echo($a);?></td>
       <td><?php echo($b); ?></td>
-      <td><img src="<?php echo $c;?>" id="imgdata" width = "200" height= "150"></td>
+      <td><?php echo '<img src="'.$src.'">';?></td>
      
     </tr>
     
@@ -51,36 +57,16 @@ foreach ($t as  $v) {
   </tbody>
 </table>
 
+<script>
 
-
-
-<script type="text/javascript">
-
-	
-
-
-	
 </script>
-
-
-
-
 
 <?php
 
-
 }
 
-
-// $nasa = file_get_contents("https://api.nasa.gov/planetary/apod?api_key=qAHxyQi0Uilpjs7wWfKgXESirQ0JlWhxbBzq7DTP");
-
-// $json = json_encode($nasa);
-
-// $data = json_decode($json ,true);
-
-
-// echo "<pre>";
-// var_dump($data);
-// echo "<pre>";
-
 ?>
+
+
+
+<p id="p1"></p>
