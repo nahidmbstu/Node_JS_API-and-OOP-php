@@ -24,7 +24,9 @@ foreach ($t as  $t => $v) {
 $imageData = base64_encode(file_get_contents($c));
 
 // Format the image SRC:  data:{mime};base64,{data};
-$src = 'data: '.mime_content_type($c).';base64,'.$imageData;
+//$src = 'data: '.mime_content_type($c).';base64,'.$imageData;
+
+$src = 'data:image/jpeg;base64,'.$imageData;
 
 // Echo out a sample image
 
